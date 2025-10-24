@@ -1,114 +1,132 @@
-# Portfolio V5  
-Hello everyone!  
-Let me introduce myself, I’m Eki Zulfar Rachman. On this occasion, I’d like to share the portfolio website project that I’ve developed.  
+💼 Portfolio V2 — by Rithik S
 
-**Tech Stack used:**  
-- ReactJS  
-- Tailwind CSS  
-- AOS  
-- Firebase  
-- Framer Motion  
-- Lucide  
-- Material UI  
-- SweetAlert2  
+Hello everyone! 👋
+I’m Rithik S, and this is my updated React + Vite portfolio website project — built to showcase my work, creativity, and technical skills.
 
-**Website Link:**  
-[https://www.eki.my.id/](https://www.eki.my.id/)  
+🧠 Tech Stack Used
 
-We would appreciate it if you decide to use this project. Please include credit when using it. Thank you! 🙏  
+⚛️ ReactJS
 
----
+🎨 Tailwind CSS
 
-# Tutorial: Running the Project  
+✨ AOS (Animate On Scroll)
 
-Here’s a simple guide to run this project.  
+🔥 Firebase
 
-## Prerequisites  
+🎬 Framer Motion
 
-Ensure that you have already installed:  
-- **Node.js**  
+💎 Lucide React Icons
 
----
+🧩 Material UI
 
-## Steps to Run the Project  
+🧠 ShadCN/UI
 
-1. **Download this project:**  
+💫 SweetAlert2
 
-   ```bash  
-   git clone https://github.com/EkiZR/Portofolio_V5.git  
-   ```  
+🌀 Swiper JS
 
-2. **Install all dependencies:**  
+🎥 Spline 3D
 
-   ```bash  
-   npm install  
-   ```  
-   Or use:  
+🌐 Website Link
 
-   ```bash  
-   npm install --legacy-peer-deps  
-   ```  
+👉 (Add your deployment link here once it’s live)
+Example:
+https://rithik-portfolio.netlify.app
 
-3. **Run the project:**  
+⚙️ How to Run the Project
 
-   ```bash  
-   npm run dev  
-   ```  
+Follow these steps to run the project on your local machine 👇
 
-4. **Open in browser:**  
+🧩 Prerequisites
 
-   Access the application through the link displayed in your terminal.  
+Make sure you have:
 
----
+Node.js
+ installed (v18+ recommended)
 
-## Creating a Production Build  
+🚀 Steps to Run
 
-To create a production-ready build:  
+Clone the project
 
-1. Run the build command:  
+git clone https://github.com/rithik-s/portfolio-update-2.git
 
-   ```bash  
-   npm run build  
-   ```  
 
-2. The build files will be saved in the `dist` folder. You can upload this folder to your hosting server.  
+Navigate to the project directory
 
----
+cd "Portfolio Update 2"
 
-## Notes  
 
-If you encounter issues while running the project, ensure that:  
-- Node.js is correctly installed.  
-- You’re in the correct project directory.  
-- All dependencies are installed without errors.  
+Install dependencies
 
----
+npm install
 
-## Firebase Configuration  
 
-To configure Firebase for this project, follow these steps:  
+or (if you face peer dependency issues):
 
-1. **Add Firebase to the Project:**  
-   - Go to the [Firebase Console](https://console.firebase.google.com/).  
-   - Create a new project or use an existing one.  
+npm install --legacy-peer-deps
 
-2. **Enable Firestore Database:**  
-   - Create a database.  
 
-3. **Go to Project Settings:**  
-   - Click the settings icon.  
-   - Copy the Firebase configuration.  
+Run the development server
 
-4. **Go to Rules:**  
-   - Set the rules to `true`.  
+npm run dev
 
-5. **Adjust the Collection Structure:**  
-   - Set up the collections as shown in the following images:  
 
-   ![Collection Structure Example 1](https://github.com/user-attachments/assets/38580122-08a4-4499-a8fd-0f253652a239)  
-   ![Collection Structure Example 2](https://github.com/user-attachments/assets/d563d7ad-f1ab-46ff-8185-640dcebd0363)  
+Open in your browser
 
-6. **Update `firebase.js` and `firebase-comment.js` Files:**  
-   - Replace the `firebaseConfig` content with your Firebase configuration.  
+Check your terminal — a local link (like http://localhost:5173/) will appear.
+Open it to view your portfolio.
 
-"# Portfolio" 
+🏗️ Building for Production
+
+To build a production-ready version:
+
+npm run build
+
+
+The optimized build will appear inside the dist folder.
+You can deploy this folder to any hosting provider like Netlify, Vercel, or Firebase Hosting.
+
+🔥 Firebase Configuration (Optional)
+
+If you plan to connect Firebase (for contact forms, comments, or data):
+
+Go to the Firebase Console
+.
+
+Create a new project (or use an existing one).
+
+Enable Firestore Database.
+
+Go to Project Settings → Your Apps → Firebase SDK snippet, and copy the config.
+
+Paste it inside your project’s firebase.js and firebase-comment.js.
+
+Set up Firestore collections as per your app needs.
+
+In Firestore → Rules, temporarily allow read/write (for testing):
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
+
+💡 Notes
+
+If you face issues:
+
+Ensure Node.js is correctly installed.
+
+Check that you’re in the right folder (Portfolio Update 2).
+
+Reinstall dependencies if needed:
+
+rm -rf node_modules package-lock.json && npm install
+
+🧑‍💻 Credits
+
+This portfolio was developed and customized by Rithik S.
+If you use this project as a base, please give proper credit 🙏
