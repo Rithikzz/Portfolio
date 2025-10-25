@@ -3,29 +3,10 @@
 Hello everyone! 👋
 I’m Rithik S, and this is my updated React + Vite portfolio website project — built to showcase my work, creativity, and technical skills.
 
-🧠 Tech Stack Used
-
 ⚛️ ReactJS
 
 🎨 Tailwind CSS
 
-✨ AOS (Animate On Scroll)
-
-🔥 Firebase
-
-🎬 Framer Motion
-
-💎 Lucide React Icons
-
-🧩 Material UI
-
-🧠 ShadCN/UI
-
-💫 SweetAlert2
-
-🌀 Swiper JS
-
-🎥 Spline 3D
 
 🌐 Website Link
 
