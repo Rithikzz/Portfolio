@@ -25,7 +25,7 @@ const Portfolio = () => {
   return (
     <div
       id="Portfolio" // ✅ for navbar scroll target
-      className="min-h-screen bg-[#030014] text-white py-20 px-[5%] sm:px-[8%] lg:px-[10%] overflow-hidden"
+      className="min-h-screen bg-[#030014] text-white py-20 px-[5%] sm:px-[8%] lg:px-[10%] overflow-hidden mt-16 sm:mt-20"
     >
       <div className="container mx-auto">
         <h2

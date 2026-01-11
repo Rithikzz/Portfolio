@@ -96,7 +96,7 @@ const Contact = () => {
   return (
     <section
       id="Contact"
-      className="py-16 px-5 sm:px-10 scroll-mt-24"
+      className="py-20 px-[5%] sm:px-[8%] lg:px-[10%] scroll-mt-24 mt-16 sm:mt-20"
     >
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
