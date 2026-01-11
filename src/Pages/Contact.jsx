@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Linkedin, Github, Instagram, ExternalLink, Mail, User, MessageSquare, Send } from "lucide-react";
+import {
+  Linkedin,
+  Github,
+  Instagram,
+  ExternalLink,
+  Mail,
+  User,
+  MessageSquare,
+  Send,
+} from "lucide-react";
 
 const socialLinks = [
   {
@@ -30,8 +39,14 @@ const socialLinks = [
 ];
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
   const [formMessage, setFormMessage] = useState("");
+  const [msgType, setMsgType] = useState(""); // success or error
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
@@ -42,55 +57,89 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setFormMessage("");
+    setMsgType("");
 
     try {
       const res = await fetch("https://formspree.io/f/mdklqdgl", {
         method: "POST",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
       });
 
       if (res.ok) {
+        setMsgType("success");
         setFormMessage("Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        setFormMessage("Oops! Something went wrong.");
+        setMsgType("error");
+        setFormMessage("Oops! Something went wrong. Try again.");
       }
-    } catch (error) {
-      setFormMessage("Oops! Something went wrong.");
+    } catch (err) {
+      setMsgType("error");
+      setFormMessage("Network issue. Please try again later.");
     } finally {
       setIsSubmitting(false);
+
+      setTimeout(() => {
+        setFormMessage("");
+        setMsgType("");
+      }, 4000);
     }
   };
 
   return (
-    <section id="contact" className="py-16 px-5 sm:px-10">
+    <section
+      id="Contact"
+      className="py-16 px-5 sm:px-10 scroll-mt-24"
+    >
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
           Contact Me
         </h1>
         <p className="text-center text-gray-400 mb-10">
-          Got a question? Send me a message, and I'll get back to you soon.
+          Got a question? Send me a message and I’ll reply soon.
         </p>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
+          {/* Left side - Contact Info */}
           <div className="bg-white/5 backdrop-blur-xl p-8 rounded-2xl shadow-xl">
-            <h2 className="text-3xl font-bold mb-5 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
+            <h2 className="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
               Get in Touch
             </h2>
-            <p className="text-gray-400 mb-3"><Mail className="inline mr-2 w-5 h-5" /> Email: <a href="mailto:sankarrithik5@gmail.com">sankarrithik5@gmail.com</a></p>
-            <p className="text-gray-400 mb-3"><User className="inline mr-2 w-5 h-5" /> Phone: <a href="tel:+916383616410">+91 63836 16410</a></p>
-            <p className="text-gray-400 mb-3"><MessageSquare className="inline mr-2 w-5 h-5" /> Location: Ooty, Tamil Nadu, India</p>
 
-            <div className="mt-6 space-y-3">
+            <p className="text-gray-300 mb-4">
+              <Mail className="inline mr-2 w-5 h-5" />
+              <a href="mailto:sankarrithik5@gmail.com" className="hover:underline">
+                sankarrithik5@gmail.com
+              </a>
+            </p>
+
+            <p className="text-gray-300 mb-4">
+              <User className="inline mr-2 w-5 h-5" />
+              <a href="tel:+916383616410" className="hover:underline">
+                +91 63836 16410
+              </a>
+            </p>
+
+            <p className="text-gray-300 mb-4">
+              <MessageSquare className="inline mr-2 w-5 h-5" />
+              Ooty, Tamil Nadu, India
+            </p>
+
+            <div className="mt-8 space-y-3">
               {socialLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`block p-3 rounded-lg bg-white/5 border border-white/10 hover:shadow-md transition-all duration-300`}
+                  className="block p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -109,7 +158,7 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div className="bg-white/5 backdrop-blur-xl p-8 rounded-2xl shadow-xl">
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <input
                 type="text"
                 name="name"
@@ -117,9 +166,10 @@ const Contact = () => {
                 onChange={handleChange}
                 placeholder="Your Name"
                 required
-                className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none"
+                className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white focus:border-[#a855f7] transition-all"
                 disabled={isSubmitting}
               />
+
               <input
                 type="email"
                 name="email"
@@ -127,9 +177,10 @@ const Contact = () => {
                 onChange={handleChange}
                 placeholder="Your Email"
                 required
-                className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none"
+                className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white focus:border-[#a855f7] transition-all"
                 disabled={isSubmitting}
               />
+
               <textarea
                 name="message"
                 value={formData.message}
@@ -137,17 +188,35 @@ const Contact = () => {
                 rows="6"
                 placeholder="Your Message"
                 required
-                className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none resize-none"
+                className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white focus:border-[#a855f7] transition-all resize-none"
                 disabled={isSubmitting}
               ></textarea>
+
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-3 rounded-lg font-semibold hover:scale-105 transition-transform disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-3 rounded-lg font-semibold hover:scale-105 transition-transform disabled:opacity-50"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? (
+                  <>
+                    <Send className="w-5 h-5 animate-pulse" /> Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" /> Send Message
+                  </>
+                )}
               </button>
-              {formMessage && <p className="mt-2 text-center text-green-400">{formMessage}</p>}
+
+              {formMessage && (
+                <p
+                  className={`text-center mt-2 transition-all ${
+                    msgType === "success" ? "text-green-400" : "text-red-400"
+                  }`}
+                >
+                  {formMessage}
+                </p>
+              )}
             </form>
           </div>
         </div>

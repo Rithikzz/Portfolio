@@ -6,9 +6,12 @@ import {
   Instagram,
   Sparkles,
 } from "lucide-react";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Lottie from "lottie-react";
+
+// Coding animation URL from LottieFiles - Developer working animation
+const CODING_ANIMATION_URL = "https://assets2.lottiefiles.com/packages/lf20_w51pcehl.json";
 
 // Memoized Components
 const StatusBadge = memo(() => (
@@ -109,6 +112,15 @@ const Home = () => {
   const [charIndex, setCharIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [animationData, setAnimationData] = useState(null);
+
+  // Fetch Lottie animation
+  useEffect(() => {
+    fetch(CODING_ANIMATION_URL)
+      .then(res => res.json())
+      .then(data => setAnimationData(data))
+      .catch(err => console.error("Failed to load animation:", err));
+  }, []);
 
   useEffect(() => {
     const initAOS = () => {
@@ -150,22 +162,6 @@ const Home = () => {
     );
     return () => clearTimeout(timeout);
   }, [handleTyping]);
-
-  const lottieOptions = {
-    src: "https://lottie.host/58753882-bb6a-49f5-a2c0-950eda1e135a/NLbpVqGegK.lottie",
-    loop: true,
-    autoplay: true,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-      progressiveLoad: true,
-    },
-    style: { width: "100%", height: "100%" },
-    className: `w-full h-full transition-all duration-500 ${
-      isHovering
-        ? "scale-[180%] sm:scale-[160%] md:scale-[150%] lg:scale-[145%] rotate-2"
-        : "scale-[175%] sm:scale-[155%] md:scale-[145%] lg:scale-[140%]"
-    }`,
-  };
 
   return (
     <div className="min-h-screen bg-[#030014] overflow-hidden" id="Home">
@@ -240,7 +236,7 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Right Column - Lottie */}
+            {/* Right Column - Animation */}
             <div
               className="w-full py-[10%] sm:py-0 lg:w-1/2 h-auto lg:h-[600px] xl:h-[750px] relative flex items-center justify-center order-2 lg:order-2 mt-8 lg:mt-0"
               onMouseEnter={() => setIsHovering(true)}
@@ -248,7 +244,7 @@ const Home = () => {
               data-aos="fade-left"
               data-aos-delay="600"
             >
-              <div className="relative w-full opacity-90">
+              <div className="relative w-full h-full flex items-center justify-center">
                 <div
                   className={`absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-3xl blur-3xl transition-all duration-700 ease-in-out ${
                     isHovering ? "opacity-50 scale-105" : "opacity-20 scale-100"
@@ -256,11 +252,24 @@ const Home = () => {
                 ></div>
 
                 <div
-                  className={`relative z-10 w-full opacity-90 transform transition-transform duration-500 ${
+                  className={`relative z-10 w-full h-full flex items-center justify-center transition-transform duration-500 ${
                     isHovering ? "scale-105" : "scale-100"
                   }`}
                 >
-                  <DotLottieReact {...lottieOptions} />
+                  {animationData ? (
+                    <Lottie 
+                      animationData={animationData}
+                      loop={true}
+                      className="w-full h-full max-w-[600px] max-h-[600px]"
+                    />
+                  ) : (
+                    <img 
+                      src="/Coding.gif" 
+                      alt="Coding Animation"
+                      className="w-full h-full object-contain max-w-[600px] max-h-[600px]"
+                      loading="eager"
+                    />
+                  )}
                 </div>
               </div>
             </div>
