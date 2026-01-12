@@ -6,9 +6,11 @@ import "./index.css";
 
 import Navbar from "./components/Navbar";
 import AnimatedBackground from "./components/Background";
+import CinematicBackground from "./components/CinematicBackground";
 
 import Home from "./Pages/Home";
 import About from "./Pages/About";
+import Projects from "./Pages/Projects";
 import Portfolio from "./Pages/Portofolio";
 import ContactPage from "./Pages/Contact";
 import WelcomeScreen from "./Pages/WelcomeScreen";
@@ -26,8 +28,10 @@ const LandingPage = ({ showWelcome, setShowWelcome }) => {
         <>
           <Navbar />
           <AnimatedBackground />
+          <CinematicBackground />
           <Home />
           <About />
+          <Projects />
           <Portfolio />
           <ContactPage /> {/* ContactPage now includes SocialLinks internally */}
           <footer className="mt-16">
