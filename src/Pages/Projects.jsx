@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ExternalLink, Github, Sparkles, FileText, Pencil, Sparkle, Telescope, Moon, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useEffect, useState, useRef } from "react";
+import { ExternalLink, Github, Sparkles, FileText, Pencil, Sparkle, Telescope, Moon, Star, ChevronLeft, ChevronRight, Eye, Cpu, Zap } from "lucide-react";
 import Lottie from "lottie-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -259,6 +259,138 @@ const AstroTrackAnimation = () => {
   );
 };
 
+// Real-Time Multimodal AI Vision System Animation
+const VisionAIAnimation = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [scanLine, setScanLine] = useState(0);
+  const [detections, setDetections] = useState([]);
+  const intervalRef = useRef(null);
+
+  const sampleDetections = [
+    { label: "Person", conf: 97, x: 15, y: 20, w: 30, h: 45, color: "#6366f1" },
+    { label: "Car",    conf: 92, x: 55, y: 40, w: 35, h: 30, color: "#10b981" },
+    { label: "Object", conf: 85, x: 5,  y: 55, w: 20, h: 20, color: "#f59e0b" },
+  ];
+
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setScanLine(prev => (prev + 2) % 100);
+    }, 40);
+    setTimeout(() => setDetections(sampleDetections), 800);
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  return (
+    <div
+      className="relative w-full h-full flex items-center justify-center"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Background glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/20 via-cyan-600/20 to-indigo-600/20 blur-3xl animate-pulse-slow"></div>
+
+      {/* Camera feed frame */}
+      <div
+        className={`relative transition-all duration-700 ${isHovered ? "scale-110" : "scale-100"}`}
+        style={{ width: 220, height: 160 }}
+      >
+        {/* Main screen */}
+        <div className="w-full h-full bg-gray-950 rounded-xl border-2 border-emerald-500/60 shadow-[0_0_30px_rgba(16,185,129,0.5)] overflow-hidden">
+
+          {/* Grid overlay */}
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(16,185,129,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.4) 1px, transparent 1px)",
+              backgroundSize: "20px 20px",
+            }}
+          />
+
+          {/* Scan line */}
+          <div
+            className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-70 transition-none"
+            style={{ top: `${scanLine}%` }}
+          />
+
+          {/* Detection boxes */}
+          {detections.map((d, i) => (
+            <div
+              key={i}
+              className="absolute border-2 rounded-sm transition-all duration-500"
+              style={{
+                left: `${d.x}%`, top: `${d.y}%`,
+                width: `${d.w}%`, height: `${d.h}%`,
+                borderColor: d.color,
+                boxShadow: `0 0 6px ${d.color}88`,
+              }}
+            >
+              <span
+                className="absolute -top-4 left-0 text-[7px] font-bold px-1 rounded-sm"
+                style={{ background: d.color, color: "#fff" }}
+              >
+                {d.label} {d.conf}%
+              </span>
+            </div>
+          ))}
+
+          {/* Corner brackets */}
+          {[["top-1 left-1 border-t-2 border-l-2"], ["top-1 right-1 border-t-2 border-r-2"], ["bottom-1 left-1 border-b-2 border-l-2"], ["bottom-1 right-1 border-b-2 border-r-2"]].map(([cls], i) => (
+            <div key={i} className={`absolute w-4 h-4 ${cls} border-emerald-400 opacity-80`} />
+          ))}
+
+          {/* HUD top bar */}
+          <div className="absolute top-2 left-0 right-0 flex items-center justify-between px-3">
+            <div className="flex items-center gap-1">
+              <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div>
+              <span className="text-[7px] text-emerald-400 font-mono">REC</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Eye className="w-2.5 h-2.5 text-cyan-400" />
+              <span className="text-[7px] text-cyan-400 font-mono">VISION AI</span>
+            </div>
+            <span className="text-[7px] text-gray-400 font-mono">30 FPS</span>
+          </div>
+
+          {/* HUD bottom bar */}
+          <div className="absolute bottom-2 left-0 right-0 flex items-center justify-between px-3">
+            <div className="flex items-center gap-1">
+              <Cpu className="w-2.5 h-2.5 text-indigo-400" />
+              <span className="text-[7px] text-indigo-400 font-mono">GPU 94%</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Zap className="w-2.5 h-2.5 text-yellow-400" />
+              <span className="text-[7px] text-yellow-400 font-mono">{detections.length} OBJ</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating icons */}
+        <Eye className="absolute -top-4 -right-4 w-4 h-4 text-emerald-400 animate-float-1" />
+        <Zap className="absolute -bottom-2 -left-5 w-3 h-3 text-cyan-400 animate-float-2" />
+      </div>
+
+      <style jsx>{`
+        @keyframes float-1 {
+          0%, 100% { transform: translateY(0px); opacity: 0.7; }
+          50% { transform: translateY(-12px); opacity: 1; }
+        }
+        @keyframes float-2 {
+          0%, 100% { transform: translateY(0px); opacity: 0.6; }
+          50% { transform: translateY(-8px); opacity: 1; }
+        }
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.6; }
+        }
+        .animate-float-1 { animation: float-1 3s ease-in-out infinite; }
+        .animate-float-2 { animation: float-2 3.5s ease-in-out infinite; }
+        .animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
+      `}</style>
+    </div>
+  );
+};
+
 const projects = [
   {
     id: 1,
@@ -277,6 +409,15 @@ const projects = [
     tags: ["Python", "APIs", "Real-time Data"],
     liveLink: "",
     githubLink: "https://github.com/Rithikzz/AstroTrack",
+  },
+  {
+    id: 3,
+    title: "Real-Time Multimodal AI Vision System",
+    description: "A high-performance real-time AI vision system that combines object detection, semantic segmentation, and multimodal analysis. Processes live video streams at 30 FPS with GPU-accelerated inference, supporting simultaneous detection of objects, faces, gestures, and scene context.",
+    useVisionAnimation: true,
+    tags: ["Python", "OpenCV", "PyTorch", "WebRTC", "FastAPI"],
+    liveLink: "",
+    githubLink: "",
   },
 ];
 
@@ -297,6 +438,8 @@ const ProjectCard = ({ project, index }) => (
           <ResumeBuilderAnimation />
         ) : project.useAstroAnimation ? (
           <AstroTrackAnimation />
+        ) : project.useVisionAnimation ? (
+          <VisionAIAnimation />
         ) : project.animation ? (
           <Lottie
             animationData={project.animation}
