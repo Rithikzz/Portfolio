@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { ExternalLink, Github, Sparkles, FileText, Pencil, Sparkle, Telescope, Moon, Star, ChevronLeft, ChevronRight, Eye, Cpu, Zap } from "lucide-react";
+import { ExternalLink, Github, Sparkles, FileText, Pencil, Sparkle, Telescope, Moon, Star, ChevronLeft, ChevronRight, Eye, Cpu, Zap, Scale, Mic, Shield, Users, Briefcase, Building2 } from "lucide-react";
 import Lottie from "lottie-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -391,6 +391,189 @@ const VisionAIAnimation = () => {
   );
 };
 
+const ContractRiskAnimation = () => {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-600/20 via-rose-600/20 to-purple-600/20 blur-3xl animate-pulse-slow"></div>
+
+      <div className="relative w-56 h-40 bg-gray-950 rounded-xl border-2 border-amber-500/50 shadow-[0_0_24px_rgba(245,158,11,0.5)] overflow-hidden">
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage:
+            "linear-gradient(rgba(245,158,11,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(245,158,11,0.35) 1px, transparent 1px)",
+          backgroundSize: "18px 18px",
+        }} />
+
+        <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+          <div className="flex items-center gap-1">
+            <FileText className="w-3 h-3 text-amber-400" />
+            <span className="text-[7px] text-amber-300 font-mono">CONTRACT</span>
+          </div>
+          <div className="flex items-center gap-1 px-1.5 py-0.5 bg-rose-600/30 rounded-full border border-rose-400/40">
+            <Scale className="w-2.5 h-2.5 text-rose-300" />
+            <span className="text-[7px] text-rose-200 font-mono">RISK</span>
+          </div>
+        </div>
+
+        <div className="absolute top-10 left-4 right-4 space-y-1">
+          <div className="h-1 bg-amber-400/70 rounded"></div>
+          <div className="h-1 bg-purple-400/50 rounded w-4/5"></div>
+          <div className="h-1 bg-rose-400/50 rounded w-3/5"></div>
+          <div className="h-1 bg-amber-400/40 rounded w-2/3"></div>
+        </div>
+
+        <div className="absolute bottom-4 left-4 right-4">
+          <div className="text-[7px] text-amber-300 font-mono mb-1">Clause Risk Meter</div>
+          <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+            <div className="h-full bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-500 animate-risk-scan"></div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes risk-scan {
+          0% { transform: translateX(-60%); }
+          100% { transform: translateX(0%); }
+        }
+        .animate-risk-scan {
+          width: 140%;
+          animation: risk-scan 2.6s ease-in-out infinite;
+        }
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.6; }
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 4s ease-in-out infinite;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+const SahayakAnimation = () => (
+  <div className="relative w-full h-full flex items-center justify-center">
+    <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/20 via-blue-600/20 to-emerald-600/20 blur-3xl animate-pulse-slow"></div>
+
+    <div className="relative w-56 h-40 bg-gray-950 rounded-xl border-2 border-cyan-500/50 shadow-[0_0_24px_rgba(6,182,212,0.5)] overflow-hidden">
+      <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+        <div className="flex items-center gap-1">
+          <Building2 className="w-3 h-3 text-cyan-400" />
+          <span className="text-[7px] text-cyan-300 font-mono">KIOSK</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <Mic className="w-3 h-3 text-emerald-400 animate-pulse" />
+          <span className="text-[7px] text-emerald-300 font-mono">VOICE</span>
+        </div>
+      </div>
+
+      <div className="absolute top-10 left-4 right-4 grid grid-cols-3 gap-1">
+        {["EN", "HI", "TA"].map((lang) => (
+          <div key={lang} className="text-[7px] text-center text-cyan-200 bg-cyan-500/20 border border-cyan-400/30 rounded py-1">
+            {lang}
+          </div>
+        ))}
+      </div>
+
+      <div className="absolute bottom-4 left-4 right-4 space-y-1">
+        <div className="h-1 bg-emerald-400/60 rounded w-4/5"></div>
+        <div className="h-1 bg-cyan-400/50 rounded w-3/5"></div>
+        <div className="h-1 bg-blue-400/50 rounded w-2/3"></div>
+      </div>
+    </div>
+
+    <style jsx>{`
+      @keyframes pulse-slow {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.6; }
+      }
+      .animate-pulse-slow {
+        animation: pulse-slow 4s ease-in-out infinite;
+      }
+    `}</style>
+  </div>
+);
+
+const CrimeManagementAnimation = () => (
+  <div className="relative w-full h-full flex items-center justify-center">
+    <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 via-purple-600/20 to-blue-600/20 blur-3xl animate-pulse-slow"></div>
+
+    <div className="relative w-56 h-40 bg-gray-950 rounded-xl border-2 border-red-500/50 shadow-[0_0_24px_rgba(239,68,68,0.5)] overflow-hidden">
+      <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+        <div className="flex items-center gap-1">
+          <Shield className="w-3 h-3 text-red-400" />
+          <span className="text-[7px] text-red-300 font-mono">CASE FILE</span>
+        </div>
+        <div className="text-[7px] text-blue-300 font-mono">SECURE</div>
+      </div>
+
+      <div className="absolute top-10 left-4 right-4">
+        <div className="h-14 border border-blue-400/30 rounded-lg relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent animate-sweep"></div>
+          <div className="absolute top-2 left-2 text-[7px] text-blue-200 font-mono">Evidence</div>
+          <div className="absolute bottom-2 right-2 px-1.5 py-0.5 bg-red-500/30 border border-red-400/40 rounded text-[7px] text-red-200">Tagged</div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+        <div className="text-[7px] text-gray-400 font-mono">Status: Active</div>
+        <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+      </div>
+    </div>
+
+    <style jsx>{`
+      @keyframes sweep {
+        0% { transform: translateX(-120%); }
+        100% { transform: translateX(120%); }
+      }
+      .animate-sweep {
+        animation: sweep 2.8s ease-in-out infinite;
+      }
+      @keyframes pulse-slow {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.6; }
+      }
+      .animate-pulse-slow {
+        animation: pulse-slow 4s ease-in-out infinite;
+      }
+    `}</style>
+  </div>
+);
+
+const WorkerRegistryAnimation = () => (
+  <div className="relative w-full h-full flex items-center justify-center">
+    <div className="absolute inset-0 bg-gradient-to-br from-green-600/20 via-teal-600/20 to-sky-600/20 blur-3xl animate-pulse-slow"></div>
+
+    <div className="relative w-56 h-40 bg-gray-950 rounded-xl border-2 border-teal-500/50 shadow-[0_0_24px_rgba(20,184,166,0.5)] overflow-hidden">
+      <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+        <div className="flex items-center gap-1">
+          <Users className="w-3 h-3 text-teal-400" />
+          <span className="text-[7px] text-teal-300 font-mono">REGISTRY</span>
+        </div>
+        <Briefcase className="w-3 h-3 text-sky-300" />
+      </div>
+
+      <div className="absolute top-10 left-4 right-4 grid grid-cols-2 gap-2">
+        {["Workers", "Employers", "Jobs", "Disputes"].map((label) => (
+          <div key={label} className="bg-teal-500/10 border border-teal-400/30 rounded px-2 py-1">
+            <div className="text-[7px] text-teal-200 font-mono">{label}</div>
+            <div className="h-1 bg-teal-400/50 rounded mt-1"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <style jsx>{`
+      @keyframes pulse-slow {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.6; }
+      }
+      .animate-pulse-slow {
+        animation: pulse-slow 4s ease-in-out infinite;
+      }
+    `}</style>
+  </div>
+);
+
 const projects = [
   {
     id: 1,
@@ -419,6 +602,42 @@ const projects = [
     liveLink: "",
     githubLink: "",
   },
+  {
+    id: 4,
+    title: "AI Contract Risk Analyzer",
+    description: "AI-powered contract analysis that flags risky clauses and delivers clause-level insights, summaries, and Q&A for legal review.",
+    useContractAnimation: true,
+    tags: ["FastAPI", "NLP", "Sentence Transformers", "SQLite", "Chart.js"],
+    liveLink: "",
+    githubLink: "https://github.com/Rithikzz/AI-Contract-Risk-Analyzer",
+  },
+  {
+    id: 5,
+    title: "Sahayak Kiosk & Admin",
+    description: "Multilingual AI-assisted banking kiosk and admin system with voice/touch form filling, kiosk management, and analytics.",
+    useSahayakAnimation: true,
+    tags: ["React", "FastAPI", "Docker", "PostgreSQL", "AWS Bedrock"],
+    liveLink: "",
+    githubLink: "https://github.com/Rithikzz/Sahayak-prototype",
+  },
+  {
+    id: 6,
+    title: "Crime Record Management",
+    description: "Full-stack crime records platform for case tracking, evidence workflows, suspect profiles, and analytics with secure auth.",
+    useCrimeAnimation: true,
+    tags: ["React", "TypeScript", "FastAPI", "PostgreSQL", "JWT"],
+    liveLink: "",
+    githubLink: "https://github.com/Rithikzz/crime",
+  },
+  {
+    id: 7,
+    title: "Worker Registry",
+    description: "Role-based system to manage informal workers, employers, jobs, payments, disputes, and scheme enrollment.",
+    useRegistryAnimation: true,
+    tags: ["React", "Express", "MySQL", "JWT", "Tailwind CSS"],
+    liveLink: "",
+    githubLink: "https://github.com/Rithikzz/Registry",
+  },
 ];
 
 const ProjectCard = ({ project, index }) => (
@@ -440,6 +659,14 @@ const ProjectCard = ({ project, index }) => (
           <AstroTrackAnimation />
         ) : project.useVisionAnimation ? (
           <VisionAIAnimation />
+        ) : project.useContractAnimation ? (
+          <ContractRiskAnimation />
+        ) : project.useSahayakAnimation ? (
+          <SahayakAnimation />
+        ) : project.useCrimeAnimation ? (
+          <CrimeManagementAnimation />
+        ) : project.useRegistryAnimation ? (
+          <WorkerRegistryAnimation />
         ) : project.animation ? (
           <Lottie
             animationData={project.animation}
